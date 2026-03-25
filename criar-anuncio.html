@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Anúncio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Criação de Anúncios</h1>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="criar-anuncio.html">Criar Anúncio</a>
+            <a href="meus-anuncios.html">Meus Anúncios</a>
+        </nav>
+    </header>
+
+    <main>                
+        <section class="secao-formulario">
+            <h2>Criar Novo Anúncio</h2>
+            
+            <form enctype="multipart/form-data" class="form-anuncio">
+                
+                <div class="titulo"> 
+                    <label for="titulo"> Título Do Anúncio</label>
+                    <input type="text" id="titulo" name="titulo" required>
+                </div>
+                
+                <div class="localizacao"> 
+                    <label for="localizacao">Localização</label>
+                    <input type="text" id="localizacao" name="localizacao" required>
+                </div>
+                
+                <div class="preco"> 
+                    <label for="preco">Preço</label>
+                    <input type="text" id="preco" name="preco" required>
+                </div>
+                
+                <div class="descricao">
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao" name="descricao"></textarea required>
+                </div>
+                
+                <div class="imagem">
+                    <label for="img"> Selecionar Imagens</label>
+                    <input type="file" id="img" name="imagens" accept="image/*" multiple>
+                    <p>Selecione uma ou mais imagens do imóvel.</p>
+                    <button type="button">Enviar Imagens</button>
+                    <p id="msg-upload">
+                        Nenhuma imagem enviada ainda.
+                    </p>
+                </div>
+                
+
+                <button type="submit">Publicar Anúncio</button>
+                
+            </form>
+        </section>
+        
+    </main>
+    <footer>
+        <p>© 2026 LarDoceLar</p>
+    </footer>
+    </body>
+    </html>
