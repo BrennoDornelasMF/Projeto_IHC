@@ -1,18 +1,1 @@
-[
-    {
-        "id": 1,
-        "titulo": "tedstr",
-        "localizacao": "gfdsfg",
-        "preco": "dfgdf",
-        "descricao": "dfgdfg",
-        "imagem": "http://127.0.0.1:5000/uploads/casa_boaviagem.jpg"
-    },
-    {
-        "id": 2,
-        "titulo": "dsf",
-        "localizacao": "sdf",
-        "preco": "sdf",
-        "descricao": "sdf",
-        "imagem": "http://127.0.0.1:5000/uploads/maxresdefault.jpg"
-    }
-]
+[]
