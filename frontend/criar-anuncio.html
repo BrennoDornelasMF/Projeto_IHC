@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Anúncio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topo">
+    <h1>Criar Anúncio</h1>
+    <nav class="menu">
+        <a href="index.html">Início</a>
+        <a href="criar-anuncio.html">Criar</a>
+        <a href="meus-anuncios.html">Meus</a>
+    </nav>
+</header>
+
+<main>
+<section class="secao-formulario">
+
+<form class="form-anuncio" enctype="multipart/form-data">
+
+<input id="titulo" placeholder="Título" required>
+<input id="localizacao" placeholder="Localização" required>
+<input id="preco" placeholder="Preço" required>
+<textarea id="descricao" placeholder="Descrição"></textarea>
+
+<input type="file" id="imagem" accept="image/*">
+
+<button type="submit">Publicar</button>
+
+</form>
+
+</section>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const form = document.querySelector(".form-anuncio");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const titulo = document.getElementById("titulo").value;
+        const localizacao = document.getElementById("localizacao").value;
+        const preco = document.getElementById("preco").value;
+        const descricao = document.getElementById("descricao").value;
+        const imagemInput = document.getElementById("imagem");
+
+        const formData = new FormData();
+
+        formData.append("titulo", titulo);
+        formData.append("localizacao", localizacao);
+        formData.append("preco", preco);
+        formData.append("descricao", descricao);
+
+        if (imagemInput.files.length > 0) {
+            formData.append("imagem", imagemInput.files[0]);
+        }
+
+        try {
+            const res = await fetch("http://127.0.0.1:5000/casas", {
+                method: "POST",
+                body: formData
+            });
+
+            if (!res.ok) {
+                throw new Error("Erro no servidor");
+            }
+
+            alert("Anúncio criado com sucesso!");
+            window.location.href = "meus-anuncios.html";
+
+        } catch (erro) {
+            console.error("ERRO:", erro);
+            alert("Erro ao enviar anúncio. Veja o console (F12).");
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
