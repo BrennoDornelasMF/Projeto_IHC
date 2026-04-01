@@ -1,51 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Anúncio</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<header class="topo">
-    <h1>Detalhes</h1>
-    <nav class="menu">
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topo">
+      <h1><a class="brand" href="index.html">LarDoceLar</a></h1>
+      <nav class="menu">
         <a href="index.html">Início</a>
-        <a href="criar-anuncio.html">Criar</a>
-        <a href="meus-anuncios.html">Meus</a>
-    </nav>
-</header>
+        <a href="criar-anuncio.html">Criar Anúncio</a>
+        <a href="meus-anuncios.html">Meus Anúncios</a>
+        <a href="financiamento.html">Financiamento</a>
+      </nav>
+    </header>
 
-<main>
-<section>
-    <img id="img">
-    <h2 id="titulo"></h2>
-    <p id="local"></p>
-    <p id="preco"></p>
-    <p id="desc"></p>
-</section>
-</main>
-
-<script>
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
-
-async function carregar() {
-    const res = await fetch("http://127.0.0.1:5000/casas");
-    const casas = await res.json();
-
-    const casa = casas.find(c => c.id == id);
-    if (!casa) return;
-
-    document.getElementById("img").src = casa.imagem;
-    document.getElementById("titulo").innerText = casa.titulo;
-    document.getElementById("local").innerText = casa.localizacao;
-    document.getElementById("preco").innerText = "R$ " + casa.preco;
-    document.getElementById("desc").innerText = casa.descricao;
-}
-
-carregar();
-</script>
-
-</body>
+    <main>
+      <section>
+        <img id="img" />
+        <div class="anuncio-topo">
+          <h2 id="titulo"></h2>
+          <button class="botao-comprar" type="button">Comprar</button>
+        </div>
+        <p id="local"></p>
+        <p id="preco"></p>
+        <p id="desc"></p>
+      </section>
+    </main>
+  </body>
 </html>

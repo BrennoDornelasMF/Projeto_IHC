@@ -1,51 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Início</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<header class="topo">
-    <h1>LarDoceLar</h1>
-    <nav class="menu">
-        <a href="index.html">Início</a>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topo">
+      <h1><a class="brand" href="index.html">LarDoceLar</a></h1>
+      <nav class="menu">
+        <a class="ativo" href="index.html">Início</a>
         <a href="criar-anuncio.html">Criar Anúncio</a>
         <a href="meus-anuncios.html">Meus Anúncios</a>
-    </nav>
-</header>
+        <a href="financiamento.html">Financiamento</a>
+      </nav>
+    </header>
 
-<main>
-<section>
-    <h2>Imóveis disponíveis</h2>
-    <div id="lista-casas"></div>
-</section>
-</main>
+    <main>
+      <section>
+        <p class="texto-topo-home">Aqui você compra ou vende seu imóvel</p>
+        <h1 class="titulo-principal">Sinta-se em casa</h1>
+        <h2 class="titulo-secao">Imóveis disponíveis</h2>
+        <div id="lista-casas"></div>
+      </section>
 
-<script>
-async function carregarCasas() {
-    const res = await fetch("http://127.0.0.1:5000/casas");
-    const casas = await res.json();
+      <section id="grupos-imoveis">
+        <div class="grupo-sequencia">
+          <div class="grupo-sequencia-topo">
+            <h2 class="titulo-secao">Casas</h2>
+            <div class="grupo-controles">
+              <button
+                type="button"
+                class="seta"
+                data-target="grupo-casas"
+                data-dir="left"
+                aria-label="Voltar"
+              >
+                &#10094;
+              </button>
+              <button
+                type="button"
+                class="seta"
+                data-target="grupo-casas"
+                data-dir="right"
+                aria-label="Avançar"
+              >
+                &#10095;
+              </button>
+            </div>
+          </div>
+          <div id="grupo-casas" class="trilho-sequencia"></div>
+        </div>
 
-    const container = document.getElementById("lista-casas");
-    container.innerHTML = "";
+        <div class="grupo-sequencia">
+          <div class="grupo-sequencia-topo">
+            <h2 class="titulo-secao">Apartamentos</h2>
+            <div class="grupo-controles">
+              <button
+                type="button"
+                class="seta"
+                data-target="grupo-apartamentos"
+                data-dir="left"
+                aria-label="Voltar"
+              >
+                &#10094;
+              </button>
+              <button
+                type="button"
+                class="seta"
+                data-target="grupo-apartamentos"
+                data-dir="right"
+                aria-label="Avançar"
+              >
+                &#10095;
+              </button>
+            </div>
+          </div>
+          <div id="grupo-apartamentos" class="trilho-sequencia"></div>
+        </div>
 
-    casas.forEach(casa => {
-        container.innerHTML += `
-            <article>
-                <img src="${casa.imagem}" onerror="this.src='https://via.placeholder.com/300'">
-                <h3>${casa.titulo}</h3>
-                <p>${casa.localizacao}</p>
-                <p>R$ ${casa.preco}</p>
-                <a href="anuncio.html?id=${casa.id}">Ver detalhes</a>
-            </article>
-        `;
-    });
-}
-
-carregarCasas();
-</script>
-
-</body>
+        <div class="grupo-sequencia">
+          <div class="grupo-sequencia-topo">
+            <h2 class="titulo-secao">Flats</h2>
+            <div class="grupo-controles">
+              <button
+                type="button"
+                class="seta"
+                data-target="grupo-flat"
+                data-dir="left"
+                aria-label="Voltar"
+              >
+                &#10094;
+              </button>
+              <button
+                type="button"
+                class="seta"
+                data-target="grupo-flat"
+                data-dir="right"
+                aria-label="Avançar"
+              >
+                &#10095;
+              </button>
+            </div>
+          </div>
+          <div id="grupo-flat" class="trilho-sequencia"></div>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

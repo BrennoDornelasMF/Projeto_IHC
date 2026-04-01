@@ -1,65 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Meus Anúncios</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<header class="topo">
-    <h1>Meus Anúncios</h1>
-    <nav class="menu">
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topo">
+      <h1><a class="brand" href="index.html">LarDoceLar</a></h1>
+      <nav class="menu">
         <a href="index.html">Início</a>
-        <a href="criar-anuncio.html">Criar</a>
-        <a href="meus-anuncios.html">Meus</a>
-    </nav>
-</header>
+        <a href="criar-anuncio.html">Criar Anúncio</a>
+        <a class="ativo" href="meus-anuncios.html">Meus Anúncios</a>
+        <a href="financiamento.html">Financiamento</a>
+      </nav>
+    </header>
 
-<main>
-<section>
-<div id="lista"></div>
-</section>
-</main>
+    <main>
+      <section>
+        <div id="lista"></div>
+      </section>
+    </main>
 
-<script>
-async function carregar() {
-    const res = await fetch("http://127.0.0.1:5000/casas");
-    const casas = await res.json();
-
-    const container = document.getElementById("lista");
-    container.innerHTML = "";
-
-    casas.forEach(casa => {
-        container.innerHTML += `
-        <article>
-            <img src="${casa.imagem}" onerror="this.src='https://via.placeholder.com/300'">
-            <h3>${casa.titulo}</h3>
-            <p>${casa.localizacao}</p>
-            <p>R$ ${casa.preco}</p>
-
-            <div class="botoes-anuncio">
-                <button onclick="ver(${casa.id})">Info</button>
-                <button onclick="deletar(${casa.id})">Excluir</button>
-            </div>
-        </article>
-        `;
-    });
-}
-
-function ver(id){
-    window.location.href = `anuncio.html?id=${id}`;
-}
-
-async function deletar(id){
-    await fetch(`http://127.0.0.1:5000/casas/${id}`, {
-        method: "DELETE"
-    });
-    carregar();
-}
-
-carregar();
-</script>
-
-</body>
+    <div
+      id="modal-confirmacao"
+      class="modal-confirmacao oculto"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="titulo-confirmacao"
+    >
+      <div class="modal-conteudo">
+        <h3 id="titulo-confirmacao">Confirmar remoção</h3>
+        <p>Tem certeza que deseja remover este anúncio?</p>
+        <div class="modal-acoes">
+          <button
+            type="button"
+            id="cancelar-remocao"
+            class="botao-modal-cancelar"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            id="confirmar-remocao"
+            class="botao-modal-confirmar"
+          >
+            Remover anúncio
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

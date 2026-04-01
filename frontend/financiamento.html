@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simulador de Financiamento</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topo">
+      <h1><a class="brand" href="index.html">LarDoceLar</a></h1>
+      <nav class="menu">
+        <a href="index.html">Início</a>
+        <a href="criar-anuncio.html">Criar Anúncio</a>
+        <a href="meus-anuncios.html">Meus Anúncios</a>
+        <a class="ativo" href="financiamento.html">Financiamento</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="secao-formulario">
+        <h2 class="titulo-secao">Simulador de Financiamento</h2>
+        <p id="financiamento-imovel" class="subtitulo-financiamento"></p>
+
+        <form id="form-financiamento" class="form-anuncio form-financiamento">
+          <input
+            id="preco-imovel"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Preço do imóvel"
+            required
+          />
+          <input
+            id="entrada"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Entrada"
+            required
+          />
+          <input
+            id="prazo"
+            type="number"
+            min="1"
+            step="1"
+            placeholder="Prazo (meses)"
+            required
+          />
+          <input
+            id="taxa"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Taxa de juros mensal (%)"
+            required
+          />
+
+          <button type="submit">Simular financiamento</button>
+        </form>
+
+        <article
+          id="resultado-financiamento"
+          class="card-resultado oculto"
+          aria-live="polite"
+        >
+          <h3>Resultado da simulação</h3>
+          <p>
+            <strong>Valor financiado:</strong>
+            <span id="valor-financiado">-</span>
+          </p>
+          <p>
+            <strong>Parcela mensal:</strong> <span id="parcela-mensal">-</span>
+          </p>
+          <p><strong>Total pago:</strong> <span id="total-pago">-</span></p>
+          <p>
+            <strong>Total de juros:</strong> <span id="total-juros">-</span>
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

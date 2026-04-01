@@ -1,1 +1,162 @@
-[]
+[
+  {
+    "id": 1,
+    "titulo": "Casa moderna com piscina e churrasqueira",
+    "localizacao": "Boa Viagem, Recife - PE",
+    "preco": "1.250.000",
+    "descricao": "Casa ampla com 4 quartos, piscina privativa, \u00e1rea gourmet e garagem para 3 carros. Ideal para fam\u00edlias que buscam conforto e lazer.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa1.jfif"
+  },
+  {
+    "id": 2,
+    "titulo": "Apartamento com vista para o mar",
+    "localizacao": "Pina, Recife - PE",
+    "preco": "890.000",
+    "descricao": "Apartamento com 3 quartos, varanda gourmet e vista privilegiada para o mar. Condom\u00ednio com lazer completo.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa2.jfif"
+  },
+  {
+    "id": 3,
+    "titulo": "Flat mobiliado com vista incrivel",
+    "localizacao": "Boa Viagem, Recife - PE",
+    "preco": "320.000",
+    "descricao": "Flat totalmente mobiliado, pronto para loca\u00e7\u00e3o por temporada.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa3.jfif"
+  },
+  {
+    "id": 4,
+    "titulo": "Casa duplex em condom\u00ednio fechado",
+    "localizacao": "Aldeia, Camaragibe - PE",
+    "preco": "780.000",
+    "descricao": "Casa com 3 su\u00edtes, seguran\u00e7a 24h, \u00e1rea verde e excelente ventila\u00e7\u00e3o natural.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa4.jfif"
+  },
+  {
+    "id": 5,
+    "titulo": "Apartamento compacto moderno",
+    "localizacao": "Madalena, Recife - PE",
+    "preco": "290.000",
+    "descricao": "Ideal para solteiros ou casais. 2 quartos, design moderno e \u00f3tima localiza\u00e7\u00e3o.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa5.jfif"
+  },
+  {
+    "id": 6,
+    "titulo": "Casa de luxo com jardim amplo",
+    "localizacao": "Casa Forte, Recife - PE",
+    "preco": "2.800.000",
+    "descricao": "Im\u00f3vel de alto padr\u00e3o com 5 quartos, jardim amplo, \u00e1rea gourmet e acabamento premium.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa6.jfif"
+  },
+  {
+    "id": 7,
+    "titulo": "Flat estilo studio urbano novo",
+    "localizacao": "Recife Antigo, Recife - PE",
+    "preco": "350.000",
+    "descricao": "Studio com design urbano, perfeito para jovens profissionais e investidores.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa7.jfif"
+  },
+  {
+    "id": 8,
+    "titulo": "Apartamento familiar espa\u00e7oso",
+    "localizacao": "Espinheiro, Recife - PE",
+    "preco": "1.100.000",
+    "descricao": "4 quartos, su\u00edte master, sala ampla e excelente localiza\u00e7\u00e3o para fam\u00edlias.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa8.jfif"
+  },
+  {
+    "id": 9,
+    "titulo": "Casa simples e aconchegante em Olinda",
+    "localizacao": "Olinda - PE",
+    "preco": "220.000",
+    "descricao": "Casa com 2 quartos, ambiente acolhedor e \u00f3tima op\u00e7\u00e3o para primeira compra.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa9.jfif"
+  },
+  {
+    "id": 10,
+    "titulo": "Apartamento com piscina e area privativa",
+    "localizacao": "Boa Viagem, Recife - PE",
+    "preco": "1.950.000",
+    "descricao": "Cobertura com piscina privativa, 3 su\u00edtes e vista panor\u00e2mica da cidade. Ideal para quem busca exclusividade.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa10.jfif"
+  },
+  {
+    "id": 11,
+    "titulo": "Casa t\u00e9rrea com varanda ampla",
+    "localizacao": "Ibura, Recife - PE",
+    "preco": "350.000",
+    "descricao": "Casa com 3 quartos, varanda espa\u00e7osa, quintal e boa ventila\u00e7\u00e3o. Ideal para fam\u00edlias.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa11.jfif"
+  },
+  {
+    "id": 12,
+    "titulo": "Apartamento com varanda gourmet",
+    "localizacao": "Boa Viagem, Recife - PE",
+    "preco": "720.000",
+    "descricao": "3 quartos, varanda gourmet integrada e condom\u00ednio com \u00e1rea de lazer completa.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa12.jfif"
+  },
+  {
+    "id": 13,
+    "titulo": "Flat moderno pr\u00f3ximo \u00e0 praia",
+    "localizacao": "Piedade, Jaboat\u00e3o dos Guararapes - PE",
+    "preco": "280.000",
+    "descricao": "Flat mobiliado, ideal para aluguel por temporada, a poucos metros da praia.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa13.jfif"
+  },
+  {
+    "id": 14,
+    "titulo": "Casa duplex com piscina compacta",
+    "localizacao": "Candeias, Jaboat\u00e3o dos Guararapes - PE",
+    "preco": "650.000",
+    "descricao": "3 quartos, piscina compacta e \u00e1rea externa ideal para lazer em fam\u00edlia.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa14.jfif"
+  },
+  {
+    "id": 15,
+    "titulo": "Apartamento econ\u00f4mico afastado do centro pronto para morar",
+    "localizacao": "Afogados, Recife - PE",
+    "preco": "190.000",
+    "descricao": "2 quartos, bem distribu\u00eddo e pr\u00f3ximo a com\u00e9rcios e transporte p\u00fablico.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa15.jfif"
+  },
+  {
+    "id": 16,
+    "titulo": "Casa de alto padr\u00e3o com piscina e quadra de tenis e cooper",
+    "localizacao": "Aldeia, Camaragibe - PE",
+    "preco": "2.200.000",
+    "descricao": "4 su\u00edtes, piscina grande, \u00e1rea verde e acabamento de alto padr\u00e3o.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa16.jfif"
+  },
+  {
+    "id": 17,
+    "titulo": "Flat estilo minimalista com 2 quartos",
+    "localizacao": "Boa Vista, Recife - PE",
+    "preco": "260.000",
+    "descricao": "Studio compacto com design minimalista, ideal para estudantes e investidores.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa17.jfif"
+  },
+  {
+    "id": 18,
+    "titulo": "Apartamento com vista panor\u00e2mica para o parque",
+    "localizacao": "Torre, Recife - PE",
+    "preco": "540.000",
+    "descricao": "3 quartos, andar alto, excelente ilumina\u00e7\u00e3o natural e vista da cidade.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa18.jfif"
+  },
+  {
+    "id": 19,
+    "titulo": "Casa simples reformada proximo a nascente",
+    "localizacao": "Paulista - PE",
+    "preco": "230.000",
+    "descricao": "2 quartos, recentemente reformada, pronta para morar.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa19.jfif"
+  },
+  {
+    "id": 20,
+    "titulo": "Flat moderno com terra\u00e7o e portaria 24h",
+    "localizacao": "Gra\u00e7as, Recife - PE",
+    "preco": "1.400.000",
+    "descricao": "Cobertura com terra\u00e7o amplo, 3 quartos e espa\u00e7o ideal para receber convidados.",
+    "imagem": "http://127.0.0.1:5000/uploads/casa20.jfif"
+  }
+]

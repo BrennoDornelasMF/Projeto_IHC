@@ -1,91 +1,500 @@
+:root {
+  --brand: #ff5d05;
+  --brand-hover: #e65404;
+  --brand-active: #c84a03;
+  --danger: #d63a3a;
+  --danger-hover: #bd3232;
+  --danger-active: #a22b2b;
+  --bg-page: #f5f7fb;
+  --white: #ffffff;
+}
+
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #f5f7fb;
-    color: #333;
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: var(--bg-page);
+  color: #333;
 }
 
 .topo {
-    background: white;
-    padding: 15px 40px;
-    display: flex;
-    justify-content: space-between;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  background: var(--white);
+  border-bottom: 1px solid #e7e7e7;
+  padding: 14px 40px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 18px;
 }
 
+.topo h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--brand);
+}
+.brand {
+  text-decoration: none;
+  color: inherit;
+}
+.brand:hover {
+  opacity: 0.9;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-left: auto;
+  gap: 8px;
+}
 .menu a {
-    margin-left: 20px;
-    font-weight: bold;
+  text-decoration: none;
+  color: #2a2a2a;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 10px;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+.menu a:hover {
+  background: #f2f2f2;
+}
+.menu a.ativo {
+  background: #efefef;
 }
 
 section {
-    margin: 30px auto;
-    max-width: 1200px;
+  margin: 30px auto;
+  max-width: 1200px;
+}
+.texto-topo-home {
+  margin: 70px 0 14px;
+  text-align: center;
+  color: #333;
+  font-size: 2rem;
+}
+.titulo-principal {
+  margin: 0 0 100px;
+  text-align: center;
+  font-size: 3.2rem;
+  color: var(--brand);
+}
+.titulo-secao {
+  font-size: 2.5rem;
+}
+.secao-formulario .titulo-secao {
+  text-align: center;
 }
 
-#lista-casas, #lista {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+#lista-casas,
+#lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+#grupos-imoveis {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+.grupo-sequencia {
+  padding: 0;
+}
+.grupo-sequencia-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  gap: 10px;
+}
+.grupo-sequencia-topo h2 {
+  margin: 0;
+}
+.grupo-controles {
+  display: flex;
+  gap: 8px;
+}
+
+.seta {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #111;
+  background: var(--white);
+  color: #111;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
+.seta:hover:not(:disabled) {
+  background: #111;
+  color: var(--white);
+}
+.seta:disabled {
+  background: #ececec;
+  border-color: #d5d5d5;
+  color: #a3a3a3;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.trilho-sequencia {
+  display: flex;
+  gap: 18px;
+  overflow: hidden;
+  padding-bottom: 4px;
+  scroll-behavior: smooth;
+}
+.card-sequencia {
+  flex: 0 0 calc((100% - 18px) / 2);
+  min-width: 0;
+  background: var(--bg-page);
+  border: 1px solid #dfe6f2;
+  box-shadow: none;
+}
+.card-sequencia img {
+  height: 220px;
 }
 
 article {
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    transition: 0.3s;
+  background: var(--white);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
 }
-
 article:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
-
 article img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
 }
-
 article h3 {
-    padding: 10px;
+  padding: 10px;
+}
+article p {
+  padding: 0 10px;
 }
 
-article p {
-    padding: 0 10px;
+article a,
+.botoes-anuncio button,
+.modal-acoes button {
+  border-radius: 8px;
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    transform 0.08s ease,
+    box-shadow 0.15s ease;
 }
 
 article a {
-    display: block;
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
-    background: #0077cc;
-    color: white;
-    border-radius: 8px;
+  display: block;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  background: var(--brand);
+  color: var(--white);
+}
+
+article a:hover,
+.botao-detalhes:hover {
+  background: var(--brand-hover);
+  box-shadow: 0 4px 10px rgba(255, 93, 5, 0.32);
+}
+
+article a:active,
+.botao-detalhes:active,
+.botao-remover:active,
+.botao-modal-cancelar:active,
+.botao-modal-confirmar:active {
+  transform: translateY(1px);
+}
+
+article a:active,
+.botao-detalhes:active {
+  background: var(--brand-active);
+}
+
+.botoes-anuncio {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px;
+}
+.botoes-anuncio button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  color: var(--white);
+  font-size: 1rem;
+}
+.botao-detalhes {
+  background: var(--brand);
+}
+.botao-remover {
+  background: var(--danger);
+}
+.botao-remover:hover,
+.botao-modal-confirmar:hover {
+  background: var(--danger-hover);
+  box-shadow: 0 4px 10px rgba(214, 58, 58, 0.28);
+}
+.botao-remover:active,
+.botao-modal-confirmar:active {
+  background: var(--danger-active);
+}
+
+.modal-confirmacao {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+}
+.modal-confirmacao.oculto {
+  display: none;
+}
+.modal-conteudo {
+  width: min(92vw, 420px);
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
+}
+.modal-conteudo h3 {
+  margin: 0 0 10px;
+}
+.modal-conteudo p {
+  margin: 0 0 18px;
+  padding: 0;
+}
+.modal-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.modal-acoes button {
+  border: none;
+  padding: 10px 14px;
+  color: var(--white);
+}
+.botao-modal-cancelar {
+  background: #8d99ae;
+}
+.botao-modal-cancelar:hover {
+  background: #7e899d;
+  box-shadow: 0 4px 10px rgba(141, 153, 174, 0.28);
+}
+.botao-modal-cancelar:active {
+  background: #6f798b;
+}
+.botao-modal-confirmar {
+  background: var(--danger);
 }
 
 .form-anuncio {
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    max-width: 500px;
-    margin: auto;
+  background: var(--bg-page);
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 620px;
+  margin: auto;
 }
 
 .form-anuncio input,
 .form-anuncio textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  border: 1px solid #cfd6e4;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.form-anuncio input::placeholder,
+.form-anuncio textarea::placeholder {
+  font-family: inherit;
+}
+
+.form-anuncio textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.input-imagem {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.botao-upload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  padding: 12px 16px;
+  border: 1px solid #cfd6e4;
+  border-radius: 8px;
+  background: var(--white);
+  color: #2a2a2a;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+.botao-upload:hover {
+  background: #f3f6fc;
+}
+.icone-upload {
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .form-anuncio button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: var(--brand);
+  color: var(--white);
+  cursor: pointer;
+  font-family: inherit;
+  transition:
+    background-color 0.15s ease,
+    transform 0.08s ease,
+    box-shadow 0.15s ease;
+}
+.form-anuncio button:hover:not(:disabled) {
+  background: var(--brand-hover);
+  box-shadow: 0 4px 10px rgba(255, 93, 5, 0.32);
+}
+.form-anuncio button:active:not(:disabled) {
+  background: var(--brand-active);
+  transform: translateY(1px);
+}
+.form-anuncio button:disabled {
+  background: #ffb399;
+  cursor: not-allowed;
+}
+
+.anuncio-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 10px;
+}
+.anuncio-topo h2 {
+  margin: 0;
+  flex: 1;
+}
+.botao-comprar {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--brand);
+  color: var(--white);
+  font-family: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s ease,
+    transform 0.08s ease,
+    box-shadow 0.15s ease;
+}
+.botao-comprar:hover {
+  background: var(--brand-hover);
+  box-shadow: 0 4px 10px rgba(255, 93, 5, 0.32);
+}
+.botao-comprar:active {
+  background: var(--brand-active);
+  transform: translateY(1px);
+}
+
+.subtitulo-financiamento {
+  margin: -6px 0 20px;
+  text-align: center;
+  color: #5a6477;
+  font-weight: 500;
+}
+
+.form-financiamento {
+  max-width: 700px;
+}
+
+.card-resultado {
+  max-width: 700px;
+  margin: 18px auto 0;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--white);
+  border: 1px solid #e7e7e7;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.card-resultado h3 {
+  margin: 0 0 12px;
+  color: #2d3440;
+}
+
+.card-resultado p {
+  margin: 8px 0;
+  padding: 0;
+}
+
+.oculto {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .topo {
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .menu {
+    flex-wrap: wrap;
     width: 100%;
-    padding: 12px;
-    background: #27ae60;
-    color: white;
-    border: none;
-    border-radius: 8px;
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+  .grupo-sequencia-topo {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .trilho-sequencia {
+    gap: 14px;
+  }
+  .card-sequencia {
+    flex-basis: calc(100% - 2px);
+  }
 }
