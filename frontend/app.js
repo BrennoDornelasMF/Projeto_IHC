@@ -3,7 +3,37 @@ document.addEventListener("DOMContentLoaded", () => {
   inicializarCriarAnuncio();
   inicializarDetalheAnuncio();
   inicializarMeusAnuncios();
+  inicializarSimuladorFinanciamento();
 });
+
+function converterParaNumero(valor) {
+  if (typeof valor === "number") return valor;
+  if (!valor) return 0;
+
+  let normalizado = String(valor)
+    .trim()
+    .replace(/[^\d,.-]/g, "");
+
+  if (normalizado.includes(",") && normalizado.includes(".")) {
+    if (normalizado.lastIndexOf(",") > normalizado.lastIndexOf(".")) {
+      normalizado = normalizado.replace(/\./g, "").replace(",", ".");
+    } else {
+      normalizado = normalizado.replace(/,/g, "");
+    }
+  } else if (normalizado.includes(",")) {
+    normalizado = normalizado.replace(",", ".");
+  }
+
+  const numero = parseFloat(normalizado);
+  return Number.isFinite(numero) ? numero : 0;
+}
+
+function formatarMoeda(valor) {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(valor);
+}
 
 async function inicializarPaginaInicial() {
   const container = document.getElementById("lista-casas");
@@ -162,6 +192,71 @@ async function inicializarDetalheAnuncio() {
   document.getElementById("local").innerText = casa.localizacao;
   document.getElementById("preco").innerText = "R$ " + casa.preco;
   document.getElementById("desc").innerText = casa.descricao;
+
+  const botaoComprar = document.querySelector(".botao-comprar");
+  if (!botaoComprar) return;
+
+  botaoComprar.addEventListener("click", () => {
+    const precoNumerico = converterParaNumero(casa.preco);
+    const params = new URLSearchParams({
+      id: String(casa.id),
+      titulo: casa.titulo,
+      preco: String(precoNumerico),
+    });
+    window.location.href = `financiamento.html?${params.toString()}`;
+  });
+}
+
+function inicializarSimuladorFinanciamento() {
+  const form = document.getElementById("form-financiamento");
+  if (!form) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const titulo = params.get("titulo");
+
+  const infoImovel = document.getElementById("financiamento-imovel");
+  const precoInput = document.getElementById("preco-imovel");
+  const entradaInput = document.getElementById("entrada");
+  const prazoInput = document.getElementById("prazo");
+  const taxaInput = document.getElementById("taxa");
+
+  const cardResultado = document.getElementById("resultado-financiamento");
+  const valorFinanciado = document.getElementById("valor-financiado");
+  const parcelaMensal = document.getElementById("parcela-mensal");
+  const totalPago = document.getElementById("total-pago");
+  const totalJuros = document.getElementById("total-juros");
+
+  if (titulo && infoImovel) {
+    infoImovel.textContent = `Imóvel selecionado: ${titulo}`;
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const preco = converterParaNumero(precoInput.value);
+    const entrada = converterParaNumero(entradaInput.value);
+    const prazo = Math.max(parseInt(prazoInput.value, 10) || 0, 1);
+    const taxaMensal = converterParaNumero(taxaInput.value) / 100;
+
+    const valorBase = Math.max(preco - entrada, 0);
+    let parcela = 0;
+
+    if (taxaMensal === 0) {
+      parcela = valorBase / prazo;
+    } else {
+      const fator = Math.pow(1 + taxaMensal, prazo);
+      parcela = valorBase * ((taxaMensal * fator) / (fator - 1));
+    }
+
+    const total = parcela * prazo;
+    const juros = total - valorBase;
+
+    valorFinanciado.textContent = formatarMoeda(valorBase);
+    parcelaMensal.textContent = formatarMoeda(parcela);
+    totalPago.textContent = formatarMoeda(total);
+    totalJuros.textContent = formatarMoeda(juros);
+    cardResultado.classList.remove("oculto");
+  });
 }
 
 async function inicializarMeusAnuncios() {
