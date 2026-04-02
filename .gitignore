@@ -1,0 +1,15 @@
+# Ignorar ambientes virtuais
+.venv/
+backend/.venv/
+
+# Ignorar arquivos sensíveis
+backend/usuarios.json
+backend/uploads/
+
+# Ignorar caches do Python
+__pycache__/
+*.pyc
+
+# Ignorar logs e temporários
+*.log
+*.tmp
