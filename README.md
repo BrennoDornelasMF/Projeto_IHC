@@ -188,5 +188,8 @@ const id = new URLSearchParams(window.location.search).get("id");
 * Ver detalhes
 * Excluir anúncios
 * Upload de imagem
+* Simulação de financiamento
+* Tela de Login
+* Criação de Usuário
 
 ---
