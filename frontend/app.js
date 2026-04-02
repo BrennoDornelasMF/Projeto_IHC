@@ -35,6 +35,24 @@ function formatarMoeda(valor) {
   }).format(valor);
 }
 
+function mostrarMensagemTemporaria(texto) {
+  const mensagem = document.createElement("div");
+  mensagem.className = "mensagem-flutuante";
+  mensagem.setAttribute("role", "status");
+  mensagem.setAttribute("aria-live", "polite");
+  mensagem.textContent = texto;
+
+  document.body.appendChild(mensagem);
+
+  window.setTimeout(() => {
+    mensagem.classList.add("saindo");
+  }, 1000);
+
+  window.setTimeout(() => {
+    mensagem.remove();
+  }, 1400);
+}
+
 async function inicializarPaginaInicial() {
   const container = document.getElementById("lista-casas");
   if (!container) return;
@@ -304,11 +322,17 @@ async function inicializarMeusAnuncios() {
   async function confirmarRemocao() {
     if (idParaRemover === null) return;
 
-    await fetch(`http://127.0.0.1:5000/casas/${idParaRemover}`, {
+    const res = await fetch(`http://127.0.0.1:5000/casas/${idParaRemover}`, {
       method: "DELETE",
     });
 
+    if (!res.ok) {
+      alert("Erro ao remover anúncio. Tente novamente.");
+      return;
+    }
+
     fecharModal();
+    mostrarMensagemTemporaria("Anúncio removido com sucesso!");
     carregar();
   }
 
