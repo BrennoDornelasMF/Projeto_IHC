@@ -311,6 +311,31 @@ article a:active,
   background: var(--danger);
 }
 
+.mensagem-flutuante {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 1100;
+  max-width: min(92vw, 360px);
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #1f7a3f;
+  color: var(--white);
+  box-shadow: 0 14px 30px rgba(31, 122, 63, 0.28);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+.mensagem-flutuante.saindo {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
 .form-anuncio {
   background: var(--bg-page);
   padding: 30px;
