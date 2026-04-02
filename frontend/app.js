@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   inicializarDetalheAnuncio();
   inicializarMeusAnuncios();
   inicializarSimuladorFinanciamento();
+  inicializarLogin();
+  inicializarCriarUsuario();
+  inicializarDetalheAnuncio();
+  inicializarLogout();
 });
 
 function converterParaNumero(valor) {
@@ -361,4 +365,218 @@ async function inicializarMeusAnuncios() {
   });
 
   carregar();
+}
+function inicializarLogin() {
+  const form = document.getElementById("form-login");
+  if (!form) return;
+
+  const email = document.getElementById("login-email");
+  const senha = document.getElementById("login-senha");
+  const estado = document.getElementById("estado-login");
+  const botao = form.querySelector("button");
+
+  // Verifica se usuário já está logado
+  const usuarioLogado = localStorage.getItem("usuarioLogado");
+  if (usuarioLogado) {
+    estado.style.color = "green";
+    estado.textContent = "Você já está logado!";
+    botao.disabled = true;
+    botao.innerHTML = "✔ Logado";
+
+    // Se houver botão de logout, mostra e habilita
+    const btnLogout = document.getElementById("logout-btn");
+    if (btnLogout) btnLogout.style.display = "inline-block";
+
+    return; // não precisa mais logar
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    estado.textContent = "";
+    botao.disabled = true;
+    botao.innerHTML = `<span class="spinner"></span> Entrando...`;
+
+    if (!email.value.trim() || !senha.value.trim()) {
+      botao.disabled = false;
+      botao.innerHTML = "Entrar";
+      estado.style.color = "red";
+      estado.textContent = "Preencha todos os campos.";
+      return;
+    }
+
+    try {
+      const res = await fetch("http://127.0.0.1:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.value, senha: senha.value })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.msg || "E-mail ou senha incorretos.");
+
+      // Salva no localStorage
+      localStorage.setItem("usuarioLogado", JSON.stringify({ email: email.value }));
+
+      estado.style.color = "green";
+      estado.textContent = data.msg;
+      botao.innerHTML = "✔ Sucesso!";
+
+      // Mostra botão de logout
+      const btnLogout = document.getElementById("logout-btn");
+      if (btnLogout) btnLogout.style.display = "inline-block";
+
+      const params = new URLSearchParams(window.location.search);
+      if (params.has("titulo")) {
+        setTimeout(() => window.location.href = `financiamento.html?${params.toString()}`, 1200);
+      } else {
+        setTimeout(() => window.location.href = "index.html", 1200);
+      }
+
+    } catch (erro) {
+      estado.style.color = "red";
+      estado.textContent = erro.message;
+      botao.disabled = false;
+      botao.innerHTML = "Entrar";
+    }
+  });
+}
+
+// Função de logout
+function logout() {
+  localStorage.removeItem("usuarioLogado");
+  window.location.href = "index.html";
+}
+// Função de logout
+function logout() {
+  localStorage.removeItem("usuarioLogado");
+  window.location.href = "index.html";
+}
+
+// Inicializa o botão de logout, se existir
+function inicializarLogout() {
+  const btnLogout = document.getElementById("logout-btn");
+  if (!btnLogout) return;
+
+  // Mostra botão somente se usuário estiver logado
+  const usuarioLogado = localStorage.getItem("usuarioLogado");
+  btnLogout.style.display = usuarioLogado ? "inline-block" : "none";
+
+  btnLogout.addEventListener("click", logout);
+}
+
+function inicializarCriarUsuario() {
+  const form = document.getElementById("form-criar-usuario");
+  if (!form) return;
+
+  const nome = document.getElementById("nome");
+  const email = document.getElementById("email");
+  const senha = document.getElementById("senha");
+  const confirmar = document.getElementById("confirmar");
+  const estado = document.getElementById("estado-register");
+  const botao = form.querySelector("button");
+
+  form.addEventListener("submit", async (e) => { // <-- async adicionado
+    e.preventDefault();
+
+    estado.textContent = "";
+    botao.disabled = true;
+    botao.innerHTML = `<span class="spinner"></span> Criando conta...`;
+
+    if (
+      !nome.value.trim() ||
+      !email.value.trim() ||
+      !senha.value.trim() ||
+      !confirmar.value.trim()
+    ) {
+      estado.style.color = "red";
+      estado.textContent = "Preencha todos os campos.";
+      botao.disabled = false;
+      botao.innerHTML = "Criar Conta";
+      return;
+    }
+
+    if (senha.value !== confirmar.value) {
+      estado.style.color = "red";
+      estado.textContent = "As senhas não coincidem.";
+      botao.disabled = false;
+      botao.innerHTML = "Criar Conta";
+      return;
+    }
+
+    try {
+      const res = await fetch("http://127.0.0.1:5000/criar-usuario", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: nome.value,
+          email: email.value,
+          senha: senha.value
+        })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.msg || "Erro ao criar usuário");
+
+      estado.style.color = "green";
+      estado.textContent = data.msg;
+      botao.innerHTML = "✔ Sucesso!";
+
+      setTimeout(() => window.location.href = "login.html", 1500);
+
+    } catch (erro) {
+      estado.style.color = "red";
+      estado.textContent = erro.message;
+      botao.disabled = false;
+      botao.innerHTML = "Criar Conta";
+    }
+  });
+}
+async function inicializarDetalheAnuncio() {
+  const img = document.getElementById("img");
+  if (!img) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  const res = await fetch("http://127.0.0.1:5000/casas");
+  const casas = await res.json();
+
+  const casa = casas.find((c) => c.id == id);
+  if (!casa) return;
+
+  document.getElementById("img").src = casa.imagem;
+  document.getElementById("titulo").innerText = casa.titulo;
+  document.getElementById("local").innerText = casa.localizacao;
+  document.getElementById("preco").innerText = "R$ " + casa.preco;
+  document.getElementById("desc").innerText = casa.descricao;
+
+  const botaoComprar = document.querySelector(".botao-comprar");
+  if (!botaoComprar) return;
+
+  botaoComprar.addEventListener("click", () => {
+    const usuarioLogado = localStorage.getItem("usuarioLogado");
+
+    if (!usuarioLogado) {
+      // Se não estiver logado, redireciona para login e mantém dados do imóvel
+      const loginParams = new URLSearchParams({
+        redirect: "financiamento.html",
+        id: casa.id,
+        titulo: casa.titulo,
+        preco: casa.preco
+      });
+      window.location.href = `login.html?${loginParams.toString()}`;
+      return;
+    }
+
+    // Se estiver logado, vai direto para financiamento
+    const precoNumerico = converterParaNumero(casa.preco);
+    const financiamentoParams = new URLSearchParams({
+      id: casa.id,
+      titulo: casa.titulo,
+      preco: precoNumerico
+    });
+    window.location.href = `financiamento.html?${financiamentoParams.toString()}`;
+  });
 }

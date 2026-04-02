@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <header class="topo">
+    <h1><a class="brand" href="index.html">LarDoceLar</a></h1>
+    <nav class="menu">
+      <a href="index.html">Início</a>
+      <a href="criar-anuncio.html">Criar Anúncio</a>
+      <a href="meus-anuncios.html">Meus Anúncios</a>
+      <a href="financiamento.html">Financiamento</a>
+    </nav>
+  </header>
+
+  <main class="login-container">
+ <div class="register-container">
+    <h2>Criar Conta</h2>
+
+  <form id="form-criar-usuario">
+    <input id="nome" type="text" placeholder="Nome completo" required>
+    <input id="email" type="email" placeholder="E-mail" required>
+    <input id="senha" type="password" placeholder="Senha" required>
+    <input id="confirmar" type="password" placeholder="Confirmar senha" required>
+
+    <button type="submit">Criar Conta</button>
+
+    <p id="estado-register"></p>
+</form>
+</div>
+  </main>
+
+</body>
+</html>
