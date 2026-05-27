@@ -144,6 +144,49 @@ function inicializarCriarAnuncio() {
   const botaoPublicar = form.querySelector('button[type="submit"]');
   const camposObrigatorios = form.querySelectorAll("[required]");
 
+  const campoPreco = document.getElementById("preco");
+
+  campoPreco.addEventListener("input", () => {
+    let avisoExistente = document.querySelector(".aviso-campo");
+
+    const valorOriginal = campoPreco.value;
+    const valorLimpo = valorOriginal.replace(/[^\d]/g, "");
+
+    if (valorOriginal !== valorLimpo) {
+      campoPreco.value = valorLimpo;
+
+      if (!avisoExistente) {
+        const aviso = document.createElement("div");
+        aviso.className = "aviso-campo";
+        aviso.textContent = "Este campo aceita apenas números.";
+
+        campoPreco.insertAdjacentElement("afterend", aviso);
+      }
+    } else {
+      if (avisoExistente) {
+        avisoExistente.remove();
+      }
+    }
+  });
+  
+  const limparErros = () => {
+    form.querySelectorAll(".mensagem-erro").forEach((msg) => msg.remove());
+
+    camposObrigatorios.forEach((campo) => {
+      campo.classList.remove("campo-erro");
+    });
+  };
+
+  const mostrarErro = (campo, mensagem) => {
+    campo.classList.add("campo-erro");
+
+    const erro = document.createElement("div");
+    erro.className = "mensagem-erro";
+    erro.textContent = mensagem;
+
+    campo.insertAdjacentElement("afterend", erro);
+  };
+
   const atualizarEstadoBotao = () => {
     const formularioValido = Array.from(camposObrigatorios).every(
       (campo) => campo.value.trim() !== "",
@@ -159,6 +202,29 @@ function inicializarCriarAnuncio() {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    botaoPublicar.disabled = true;
+    botaoPublicar.innerHTML = "⏳ Publicando...";
+
+    limparErros();
+
+    let formularioValido = true;
+
+    camposObrigatorios.forEach((campo) => {
+      if (!campo.value.trim()) {
+        mostrarErro(campo, "Este campo é obrigatório.");
+        formularioValido = false;
+      }
+    });
+
+    if (!formularioValido) {
+      mostrarMensagemTemporaria("Preencha os campos obrigatórios.");
+
+      botaoPublicar.disabled = false;
+      botaoPublicar.innerHTML = "Publicar Imóvel";
+
+      return;
+    }
 
     const titulo = document.getElementById("titulo").value;
     const localizacao = document.getElementById("localizacao").value;
@@ -189,6 +255,7 @@ function inicializarCriarAnuncio() {
       }
 
       mostrarMensagemTemporaria("Anúncio criado com sucesso!");
+      botaoPublicar.innerHTML = "✔ Publicado!";
 
       setTimeout(() => {
         window.location.href = "meus-anuncios.html";
@@ -196,7 +263,10 @@ function inicializarCriarAnuncio() {
 
     } catch (erro) {
       console.error("ERRO:", erro);
-      alert("Erro ao enviar anúncio. Veja o console (F12).");
+      mostrarMensagemTemporaria("Erro ao enviar anúncio.");
+
+      botaoPublicar.disabled = false;
+      botaoPublicar.innerHTML = "Publicar Imóvel";
     }
   });
 }
