@@ -182,13 +182,18 @@ function inicializarCriarAnuncio() {
         method: "POST",
         body: formData,
       });
+      
 
       if (!res.ok) {
         throw new Error("Erro no servidor");
       }
 
-      alert("Anúncio criado com sucesso!");
-      window.location.href = "meus-anuncios.html";
+      mostrarMensagemTemporaria("Anúncio criado com sucesso!");
+
+      setTimeout(() => {
+        window.location.href = "meus-anuncios.html";
+      }, 1500);
+
     } catch (erro) {
       console.error("ERRO:", erro);
       alert("Erro ao enviar anúncio. Veja o console (F12).");
@@ -331,7 +336,7 @@ async function inicializarMeusAnuncios() {
     });
 
     if (!res.ok) {
-      alert("Erro ao remover anúncio. Tente novamente.");
+      mostrarMensagemTemporaria("Erro ao enviar anúncio.");
       return;
     }
 
