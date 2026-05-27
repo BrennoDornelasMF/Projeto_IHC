@@ -22,10 +22,32 @@
       <section class="secao-formulario">
         <h2 class="titulo-secao">Preencha os dados do imóvel</h2>
         <form class="form-anuncio" enctype="multipart/form-data">
-          <input id="titulo" placeholder="Título" required />
-          <input id="localizacao" placeholder="Localização" required />
-          <input id="preco" placeholder="Preço" required />
-          <textarea id="descricao" placeholder="Descrição"></textarea>
+          <label for="titulo">Título do imóvel</label>
+          <input
+            id="titulo"
+            type="text"
+            placeholder="Digite o título do imóvel"
+            required
+          />
+          <label for="localizacao">Localização</label>
+          <input
+            id="localizacao"
+            type="text"
+            placeholder="Digite a localização"
+            required
+          />
+          <label for="preco">Preço</label>
+          <input
+            id="preco"
+            type="number"
+            placeholder="Digite o preço"
+            required
+          />
+          <label for="descricao">Descrição</label>
+          <textarea
+            id="descricao"
+            placeholder="Descreva o imóvel"
+          ></textarea>
 
           <input
             type="file"

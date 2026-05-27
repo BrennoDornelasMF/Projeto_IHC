@@ -708,3 +708,14 @@ article a:active,
   background: var(--danger-active);
   transform: translateY(1px);
 }
+
+.form-anuncio label {
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 16px;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  color: #333;
+}
